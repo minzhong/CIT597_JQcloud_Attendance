@@ -1,35 +1,44 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Attendances</h1>
-
-<table>
+<%- model_class = Attendance -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Att date</th>
-      <th>Att time</th>
-      <th>Note</th>
-      <th>Course</th>
-      <th>Student</th>
-      <th colspan="3"></th>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:att_date) %></th>
+      <th><%= model_class.human_attribute_name(:att_time) %></th>
+      <th><%= model_class.human_attribute_name(:note) %></th>
+      <th><%= model_class.human_attribute_name(:course_id) %></th>
+      <th><%= model_class.human_attribute_name(:student_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @attendances.each do |attendance| %>
       <tr>
+        <td><%= link_to attendance.id, attendance_path(attendance) %></td>
         <td><%= attendance.att_date %></td>
         <td><%= attendance.att_time %></td>
         <td><%= attendance.note %></td>
-        <td><%= attendance.course %></td>
-        <td><%= attendance.student %></td>
-        <td><%= link_to 'Show', attendance %></td>
-        <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
-        <td><%= link_to 'Destroy', attendance, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= attendance.course_id %></td>
+        <td><%= attendance.student_id %></td>
+        <td><%=l attendance.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_attendance_path(attendance), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      attendance_path(attendance),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Attendance', new_attendance_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_attendance_path,
+            :class => 'btn btn-primary' %>

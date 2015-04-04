@@ -1,37 +1,59 @@
-<%= form_for(@attendance) do |f| %>
-  <% if @attendance.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+<%= form_for @attendance, :html => { :class => "form-horizontal attendance" } do |f| %>
 
-      <ul>
-      <% @attendance.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @attendance.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@attendance.errors.count, "error") %> prohibited this attendance from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @attendance.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :att_date %><br>
-    <%= f.date_select :att_date %>
+  <div class="control-group">
+    <%= f.label :att_date, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :att_date, :class => 'form-control' %>
+    </div>
+    <%= error_span(@attendance[:att_date]) %>
   </div>
-  <div class="field">
-    <%= f.label :att_time %><br>
-    <%= f.time_select :att_time %>
+  <div class="control-group">
+    <%= f.label :att_time, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :att_time, :class => 'form-control' %>
+    </div>
+    <%= error_span(@attendance[:att_time]) %>
   </div>
-  <div class="field">
-    <%= f.label :note %><br>
-    <%= f.text_area :note %>
+  <div class="control-group">
+    <%= f.label :note, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :note, :class => 'form-control' %>
+    </div>
+    <%= error_span(@attendance[:note]) %>
   </div>
-  <div class="field">
-    <%= f.label :course_id %><br>
-    <%= f.text_field :course_id %>
+  <div class="control-group">
+    <%= f.label :course_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :course_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@attendance[:course_id]) %>
   </div>
-  <div class="field">
-    <%= f.label :student_id %><br>
-    <%= f.text_field :student_id %>
+  <div class="control-group">
+    <%= f.label :student_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :student_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@attendance[:student_id]) %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            attendances_path, :class => 'btn btn-default' %>
+
 <% end %>

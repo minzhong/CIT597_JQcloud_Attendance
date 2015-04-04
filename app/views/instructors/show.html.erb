@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Instructor -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>User name:</strong>
-  <%= @instructor.user_name %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:user_name) %>:</strong></dt>
+  <dd><%= @instructor.user_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:password) %>:</strong></dt>
+  <dd><%= @instructor.password %></dd>
+</dl>
 
-<p>
-  <strong>Password:</strong>
-  <%= @instructor.password %>
-</p>
-
-<%= link_to 'Edit', edit_instructor_path(@instructor) %> |
-<%= link_to 'Back', instructors_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              instructors_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_instructor_path(@instructor), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              instructor_path(@instructor),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
