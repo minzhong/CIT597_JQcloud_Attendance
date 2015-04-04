@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  att_date: 2015-04-04
+  att_time: 2015-04-04 12:08:18
+  note: MyText
+  course_id: 
+  student_id: 
+
+two:
+  att_date: 2015-04-04
+  att_time: 2015-04-04 12:08:18
+  note: MyText
+  course_id: 
+  student_id: 
