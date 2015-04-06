@@ -15,4 +15,10 @@
 class Attendance < ActiveRecord::Base
   belongs_to :course
   belongs_to :student
+  validates :att_date, :presence => true
+  validates :att_time, :presence => true
+  validates :course_id, :presence => true
+  validates :student_id, :presence => true
+  validates :student_id, format: { with: /\d{8}/,
+                                    message: "penn ID should be 8 digits" }
 end
