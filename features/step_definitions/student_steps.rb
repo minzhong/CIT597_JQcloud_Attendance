@@ -14,3 +14,5 @@ end
 Then(/^I should see a new student page$/) do
  assert page.has_content?("Student was successfully created")
 end
+
+
