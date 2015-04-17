@@ -13,4 +13,6 @@
 #
 
 class Student < ActiveRecord::Base
+ has_many :attendance
+ has_and_belongs_to_many :course
 end

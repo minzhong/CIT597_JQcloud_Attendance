@@ -13,4 +13,7 @@
 #
 
 class Course < ActiveRecord::Base
+ belongs_to :user
+ has_many :attendance
+ has_and_belongs_to_many :student
 end
