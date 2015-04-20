@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions"}
+  
   resources :attendances
 
-  resources :students
+  resources :students do 
+    collection {post :import}
+  end
+  
+  resources :users 
 
   resources :courses
-
-  resources :instructors
 
   get 'welcome/index'
 
@@ -15,7 +18,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 #root 'welcome#index'
-root 'courses#new'
+root 'courses#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
