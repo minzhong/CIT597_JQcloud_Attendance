@@ -16,7 +16,7 @@ class Attendance < ActiveRecord::Base
   belongs_to :course
   belongs_to :student
                                     
-  validates :att_date, :presence => true
+  #validates :att_date, :presence => true
   #validates :att_date, format: {with: /\d{2}\/\d{2}\/\d{4}/,message:"Date should be mm/dd/yyyy"}
 
   validates :att_time, :presence => true
