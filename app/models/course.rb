@@ -14,8 +14,8 @@
 
 class Course < ActiveRecord::Base
  belongs_to :user
- has_many :attendance
- has_and_belongs_to_many :student
+ has_many :attendances
+ has_and_belongs_to_many :students
 
  validates :course_code, :presence => true
  validates :course_name, :presence => true
