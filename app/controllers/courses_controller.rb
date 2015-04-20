@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /courses
   # GET /courses.json
@@ -25,11 +26,16 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
+    # below is the way user_id are saved through nested resources
+    # @course.user_id = params[:user_id]
+    # below, the user_id is provided by devise's current_user helper when you add before_filter :authenticate_user! to the controller
+    @course.user_id = current_user.id
 
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
+        session[:current_course_id] = @course.id
       else
         format.html { render :new }
         format.json { render json: @course.errors, status: :unprocessable_entity }
