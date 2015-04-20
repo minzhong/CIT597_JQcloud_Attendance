@@ -16,8 +16,6 @@
   <dd><%= @course.note %></dd>
 </dl>
 
-<!--<%= link_to t('.back', :default => t("helpers.links.back")),-->
-<!--              courses_path, :class => 'btn btn-default'  %>-->
 <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_course_path(@course), :class => 'btn btn-default' %>
 <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
