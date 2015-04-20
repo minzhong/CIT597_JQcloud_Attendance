@@ -21,7 +21,7 @@ class Course < ActiveRecord::Base
  validates :course_name, :presence => true
 
  validates :term, :presence => true
- validates :term, format: { with: /Summer|Fall|Spring/,message: "term can be one of Summer, Fall or Spring"}
+ validates :term, format: { with: /Summer|Fall|Spring/i,message: "term can be one of Summer, Fall or Spring"}
  
  validates :year, :presence => true
  validates :year, format: { with: /\d{4}/,message: "year should have 4 digits" }

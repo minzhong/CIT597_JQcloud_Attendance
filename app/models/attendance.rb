@@ -17,10 +17,10 @@ class Attendance < ActiveRecord::Base
   belongs_to :student
 
   validates :att_date, :presence => true
-  validates :att_date, format: {with: /^(\d{2}|\d{1})\/(\d{2}|\d{1})\/(\d{4})$/}
+  validates :att_date, format: {with: /(\d{2}|\d{1})\/(\d{2}|\d{1})\/(\d{4})/}
 
   validates :att_time, :presence => true
-  validates :att_time, format: {with: /^[0-2][0-3]:[0-5][0-9]$/}
+  validates :att_time, format: {with: /[0-2][0-3]:[0-5][0-9]/}
   
   validates :course_id, :presence => true
 
