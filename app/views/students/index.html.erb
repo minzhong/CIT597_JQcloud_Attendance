@@ -39,6 +39,16 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_student_path,
-            :class => 'btn btn-primary' %>
+<div>
+	<h3>Import student roster in csv format: </h3>
+	  <%= form_tag import_students_path, multipart: true do %>
+	    <%= file_field_tag :file %>
+	    <%= submit_tag "Import CSV" %>
+	  <% end %>
+</div>
+<div>
+	<h3>Add Individual Student: </h3>
+	  <%= link_to t('.new', :default => t("helpers.links.new")),
+	              new_student_path,
+	              :class => 'btn btn-primary' %>
+</div>
