@@ -40,16 +40,11 @@ ActiveRecord::Schema.define(version: 20150417015149) do
   add_index "courses", ["user_id"], name: "index_courses_on_user_id"
 
   create_table "courses_students", id: false, force: :cascade do |t|
-    t.integer "course_id",  null: false
-    t.integer "student_id", null: false
+    t.integer "course_id"
+    t.integer "student_id"
   end
-
-  create_table "instructors", force: :cascade do |t|
-    t.string   "user_name"
-    t.string   "password"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "courses_students", ["course_id"], name: "index_courses_students_on_course_id"
+  add_index "courses_students", ["student_id"], name: "index_courses_students_on_student_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "first_name"
