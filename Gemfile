@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'annotate'
 
+gem "paperclip", "~> 4.2"
+
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 
@@ -46,6 +48,7 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'capybara'
   gem 'launchy'
+  gem 'rateaux', '~> 1.6.0'
 end
 
 
