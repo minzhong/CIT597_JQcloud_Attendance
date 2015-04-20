@@ -1,8 +1,10 @@
 class CreateJoinTableCourseStudent < ActiveRecord::Migration
   def change
-    create_join_table :courses, :students do |t|
-      # t.index [:course_id, :student_id]
-      # t.index [:student_id, :course_id]
+    create_table :courses_students, id: false do |t|
+        t.integer :course_id
+        t.integer :student_id
     end
+    add_index :courses_students, :course_id
+    add_index :courses_students, :student_id
   end
 end
