@@ -14,7 +14,7 @@
 
 class Student < ActiveRecord::Base
  has_many :attendance
- has_and_belongs_to_many :course
+ has_and_belongs_to_many :courses
 
   validates :first_name, :presence => true
   validates :last_name, :presence => true
