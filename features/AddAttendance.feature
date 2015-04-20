@@ -14,3 +14,10 @@ Feature: Record attendance records for instructors' reference
     Given I am on the create attendance page
      When I add a new attendance without valid student id
      Then I should see a page indicating the invalid penn id
+
+  Scenario: Add an attendance record for a student without valid time
+    Given I am on the create attendance page
+     When I add a new attendance without valid time format
+     Then I should see a page indicating the invalid time 
+
+  
