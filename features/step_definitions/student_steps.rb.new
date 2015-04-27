@@ -1,5 +1,5 @@
 Given(/^I am on 'create new student page'$/) do
- visit(new_student_path) 
+ visit(new_student_path)
 end
 
 When(/^I add a new student$/) do
@@ -8,30 +8,27 @@ When(/^I add a new student$/) do
   fill_in 'Pennid', :with => "1234"
   fill_in 'Email', :with => "mzhong@asc.upenn.edu"
   fill_in 'Note', :with => "Perfect Attendance"
-  click_button 'Create Student' 
+  click_button 'Create Student'
 end
 
-Then(/^I should see a new student page$/) do
+Then(/^I should see Student was successfully created\.$/) do
  assert page.has_content?("Student was successfully created")
 end
 
-Given(/^I am adding a student with a blank last name$/) do
-  visit(new_student_path) 
+Given(/^I am on 'create new student page'$/) do
+  visit(new_student_path)
 end
 
-When(/^I add a student with a blank name$/) do
-  fill_in 'Last name', :with => "Elliot"
+When(/^I add a new student with blank last name$/) do
+
+  fill_in 'first name', :with => "TS"
   fill_in 'Pennid', :with => "12345"
   fill_in 'Email', :with => "x@y.edu"
   fill_in 'Note', :with => "Perfect Attendance"
-  click_button 'Create Student' 
+  click_button 'Create Student'
 end
 
-Then(/^I should see a page indicating error$/) do
+Then(/^I should see a page indicating the blank first name$/) do
    assert page.has_css?('div.field_with_errors')
 end
-
-
-
-
 

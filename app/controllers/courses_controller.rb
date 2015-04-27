@@ -16,6 +16,7 @@ class CoursesController < ApplicationController
   # GET /courses/new
   def new
     @course = Course.new
+    @drawing = { "total" => 26,  "average" =>23,  "one_student" => 25}
   end
 
   # GET /courses/1/edit

@@ -1,0 +1,8 @@
+<%=column_chart (@graphing) %> 
+<h2>Student Attendance Record</h2>
+This grahing 
+
+student's attendance record:
+
+<br><br><a href="mailto:mzhong@asc.upenn.edu">email this student</a>
+<br><br>

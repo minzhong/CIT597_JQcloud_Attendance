@@ -24,9 +24,18 @@ class StudentsController < ApplicationController
   def show
   end
 
+  # GET /graphing/1
+  # GET /graphing/1.json
+  def graphing
+        #@graphing = Student.find(params[:id])
+	#@student_email = Student.find(params[:id])
+	@graphing = { "total" => 26, "average" => 23, "this_student" => 24} 
+  end
+
   # GET /students/new
   def new
     @student = Student.new
+	@graphing = { "total"=>26, "average"=>23, "this_student"=>24} 
   end
 
   # GET /students/1/edit

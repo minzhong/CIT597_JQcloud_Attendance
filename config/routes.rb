@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   resources :students do 
     collection {post :import}
+    member do
+	get 'graphing'
+    end
   end
   
   resources :users 
