@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions"}
   
-  resources :attendances
-
+  resources :attendances do 
+    collection {post :import}
+    collection {post :calculate}
+  end
+  # upload student roster
   resources :students do 
     collection {post :import}
   end
   
   resources :users 
-
+  
   resources :courses
 
   get 'welcome/index'
@@ -17,8 +20,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-#root 'welcome#index'
-root 'courses#index'
+  #root 'welcome#index'
+  root 'courses#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
