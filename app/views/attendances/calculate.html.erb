@@ -1,0 +1,22 @@
+<h2><br>Attendances for the course: <%= @course_name %></h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Student Id</th>
+	  <th>Last Name</th>
+	  <th>First Name</th>
+      <th>Attendances to date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= link_to student.id, student_path(student) %></td>
+        <td><%= student.last_name %></td>
+		<td><%= student.first_name %></td>
+		<td><%= Attendance.calculate_attendances(student.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+	
