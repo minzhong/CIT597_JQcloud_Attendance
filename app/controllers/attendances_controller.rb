@@ -1,15 +1,31 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /attendances
   # GET /attendances.json
   def index
+    # Need to display attendance only for this course
     @attendances = Attendance.all
   end
 
   # GET /attendances/1
   # GET /attendances/1.json
   def show
+  end
+  
+  def import
+    # params[:attendance][:course_id] is from the collection_select in the index.html.erb view
+    Attendance.import(params[:file], params[:attendance][:course_id])  
+    # this is for the flash notice in attendance views index.html.erb
+    redirect_to attendances_url, notice: "Attendances imported successfully." 
+  end
+  
+  def calculate
+    course_id = params[:attendance][:course_id]
+    course = Course.find_by_id(course_id)
+    @course_name = course.course_code
+    @students = course.students
   end
 
   # GET /attendances/new
