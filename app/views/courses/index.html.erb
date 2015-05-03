@@ -11,15 +11,14 @@
       <th><%= model_class.human_attribute_name(:term) %></th>
       <th><%= model_class.human_attribute_name(:year) %></th>
       <th><%= model_class.human_attribute_name(:note) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <!-- <th><%= model_class.human_attribute_name(:created_at) %></th> -->
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
-    <% if @courses.empty? %>
-	  No Courses Found.
-	  <% end %>
-    <% @courses.each do |course| %>
+	<% if @courses == nil %>
+	  <p>No Courses Found.</p>
+    <% else @courses.each do |course| %>
       <tr>
         <td><%= link_to course.id, course_path(course) %></td>
         <td><%= course.course_code %></td>
@@ -27,10 +26,10 @@
         <td><%= course.term %></td>
         <td><%= course.year %></td>
         <td><%= course.note %></td>
-        <td><%=l course.created_at %></td>
+        <!-- <td><%=l course.created_at %></td> -->
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_course_path(course), :class => 'btn btn-default btn-xs' %>
+                       edit_course_path(course), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       course_path(course),
                       :method => :delete,
@@ -39,9 +38,11 @@
         </td>
       </tr>
     <% end %>
+	<% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_course_path,
-            :class => 'btn btn-primary' %>
+<div>
+	<%= link_to t('.new', :default => t("helpers.links.new")),
+	            new_course_path,
+	            :class => 'btn btn-primary' %>
+</div>
