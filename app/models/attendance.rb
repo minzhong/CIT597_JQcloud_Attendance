@@ -34,20 +34,18 @@ class Attendance < ActiveRecord::Base
     if (file != nil) then
       CSV.foreach(file.path, headers: true) do |row|
         attendance_hash = row.to_hash       
-        # attendance_hash = {"event_tran_actual_datetime" => "3/24/15 12:21", "customer_number" => "11100125"}
+        p attendance_hash
+        # attendance_hash:
+        # {"Event Tran Actual DateTime"=>"1/16/15 12:21", "Customer Number"=>"11100125", "Customer Name"=>"GREEN", "Profit Center Name"=>"EMILY", "POS Name"=>"Attendance", "Event Name"=>"AnnenbergAttend2", "Event Tran Type"=>"Attendance", "Entry Type"=>"Regular Entry"}
         # attendance_date_time = ["3/24/15", "12:21"] 
         attendance_date_time = attendance_hash["Event Tran Actual DateTime"]
         attendance_date_time_array = attendance_hash["Event Tran Actual DateTime"].split(" ")
         # Note: convert the string date to date type before saving to db, samething with time
         attendance_date = Date.strptime(attendance_date_time_array[0], '%m/%d/%Y')  
         attendance_time = Time.strptime(attendance_date_time, '%m/%d/%Y %H:%M')
-        puts "Attendance date is #{attendance_date}"
-       
-        puts "Attendance time is #{attendance_time}"
         
         # student_id can be found through attendance_pennid using find_by_id
         attendance_pennid = attendance_hash["Customer Number"]
-        puts "Attendance pennid is #{attendance_pennid}"
         
         @student = Student.where("pennid = ?", attendance_pennid)
         
@@ -56,27 +54,21 @@ class Attendance < ActiveRecord::Base
            @student_id = nil # student is then not registered in this course
         else @student_id = @student.first.id
         end
-           
-        attendance = Attendance.where(id: attendance_hash["id"])
+        # check if attendance records for this course already in db
+        attendance = Attendance.where("student_id = ? AND course_id = ? AND att_date = ? AND att_time = ?", Student.find_by_pennid(attendance_hash["Customer Number"]).id, course_id, attendance_date, attendance_time)
         
-        if attendance.count == 1 then # meaning the attendance already exists in the Attendances table
-          attendance.first.update_attributes(attendance_hash) # update the attendance record found
+        if attendance.blank? then # meaning the attendance not exists in the Attendances table
+          @attendance = Attendance.create!({att_date: attendance_date, att_time: attendance_time, note: "", course_id: course_id, student_id: @student_id})
         else # otherwise create the attendance record
-          if course_id != nil && @student_id != nil then 
-             @attendance = Attendance.create!({att_date: attendance_date, att_time: attendance_time, note: "", course_id: course_id, student_id: @student_id})
-          end
+          attendance.first.update_attributes(att_date: attendance_date, att_time: attendance_time, note: "", course_id: course_id, student_id: @student_id) # update the attendance record found
         end 
         
       end # end CSV.foreach
     end # end if (file != nil)
   end # end import method
   
-  def self.calculate_attendances(student_id)
-    counts = 0
-    count_hash = Attendance.group(:student_id).count
-    if count_hash.has_key?(student_id) then 
-      counts = count_hash[student_id]
-    end
+  def self.calculate_attendances(student_id, course_id)
+    counts = Attendance.where("student_id = :studentid AND course_id = :courseid", {studentid: student_id, courseid: course_id}).count
     return counts
   end
 
