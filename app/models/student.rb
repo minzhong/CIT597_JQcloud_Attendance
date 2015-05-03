@@ -13,9 +13,10 @@
 #
 
 class Student < ActiveRecord::Base
- has_many :attendances, foreign_key: "student_id"
- has_and_belongs_to_many :courses, join_table: "courses_students"
 
+   has_many :attendances, foreign_key: "student_id"
+   has_and_belongs_to_many :courses, join_table: "courses_students"
+   
    validates :first_name, :presence => true
    validates :last_name, :presence => true
 
@@ -31,18 +32,16 @@ class Student < ActiveRecord::Base
        CSV.foreach(file.path, headers: true) do |row|
          student_hash = row.to_hash 
          # student_hash = {"first_name"=>"Kate", "last_name"=>"Standton", "pennid"=>"62833952", "email"=>"kstandton@gmail.com", "note"=>nil}
-         student = Student.where(id: student_hash["id"]) # Check if the students table already has this record
-         if student.count == 1 then # meaning the student already exists in the Students table
-           student.first.update_attributes(student_hash) # update the student record found
-         else # otherwise create the student record
+         student = Student.where("pennid = ?", student_hash["pennid"]) # Check if the students table already has this record
+         if student.blank? then # meaning the student already exists in the Students table
            @student = Student.create!(student_hash)
            # populate the join table
            @student.courses << Course.find(course_id) 
+         else # otherwise create the student record
+           student.first.update_attributes(student_hash)
          end
        end
      end # end first if block
    end # end import method
    
 end
-
-
