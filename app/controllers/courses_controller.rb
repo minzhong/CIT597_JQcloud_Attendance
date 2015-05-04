@@ -5,7 +5,17 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
+#<<<<<<< HEAD
     @courses = Course.where(:user_id => current_user.id)
+#=======
+    @current_user_id = current_user.id
+    # find will only raise exception when record not found, find_by_id will return nil if record not found.
+    if Course.find_by_user_id(@current_user_id).nil? then 
+      @courses = nil
+    else
+      @courses = Course.where("user_id = #{@current_user_id}")
+    end
+#>>>>>>> 332555489ea8a523f22b2baddecce899b6e39d8b
   end
 
   # GET /courses/1
@@ -13,7 +23,7 @@ class CoursesController < ApplicationController
   def show
   end
 
-  # GET /courses/new
+  # GET /courses/new, create an empty object
   def new
     @course = Course.new
     @drawing = { "total" => 26,  "average" =>23,  "one_student" => 25}
@@ -26,7 +36,7 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.json
   def create
-    @course = Course.new(course_params)
+    @course = Course.new(course_params)   
     # below is the way user_id are saved through nested resources
     # @course.user_id = params[:user_id]
     # below, the user_id is provided by devise's current_user helper when you add before_filter :authenticate_user! to the controller
@@ -36,6 +46,7 @@ class CoursesController < ApplicationController
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
+        # Save the 
         session[:current_course_id] = @course.id
       else
         format.html { render :new }
@@ -78,4 +89,5 @@ class CoursesController < ApplicationController
     def course_params
       params.require(:course).permit(:course_code, :course_name, :term, :year, :note)
     end
+    
 end

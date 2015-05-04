@@ -6,7 +6,8 @@ class AttendancesController < ApplicationController
   # GET /attendances.json
   def index
     # Need to display attendance only for this course
-    @attendances = Attendance.all
+    # @attendances = Attendance.where("course_id = ?", params[:attendance][:course_id])
+    # @attendances = Attendance.all
   end
 
   # GET /attendances/1
@@ -17,13 +18,14 @@ class AttendancesController < ApplicationController
   def import
     # params[:attendance][:course_id] is from the collection_select in the index.html.erb view
     Attendance.import(params[:file], params[:attendance][:course_id])  
+    @attendances = Attendance.where("course_id = ?", params[:attendance][:course_id])
     # this is for the flash notice in attendance views index.html.erb
-    redirect_to attendances_url, notice: "Attendances imported successfully." 
+    # redirect_to attendances_url, notice: "Attendances imported successfully." 
   end
   
   def calculate
-    course_id = params[:attendance][:course_id]
-    course = Course.find_by_id(course_id)
+    @course_id = params[:attendance][:course_id]
+    course = Course.find_by_id(@course_id)
     @course_name = course.course_code
     @students = course.students
   end
