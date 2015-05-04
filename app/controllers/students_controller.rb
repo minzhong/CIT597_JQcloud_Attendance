@@ -39,6 +39,7 @@ class StudentsController < ApplicationController
 	#@graphing["average"] = Attendance.count / (@att_hash.size  * Student.count)
 	@graphing["total"] = 5 
 	@graphing["average"] = 3 
+ 	#need to consider which course
         @graphing["this_student"] = Student.find(params[:id]).attendances.count
 
   end
@@ -46,7 +47,6 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-	@graphing = { "total"=>26, "average"=>23, "this_student"=>24} 
   end
 
   # GET /students/1/edit
