@@ -33,14 +33,15 @@ class Student < ActiveRecord::Base
          student_hash = row.to_hash 
          # student_hash = {"first_name"=>"Kate", "last_name"=>"Standton", "pennid"=>"62833952", "email"=>"kstandton@gmail.com", "note"=>nil}
          student = Student.where("pennid = ?", student_hash["pennid"]) # Check if the students table already has this record
-         if student.blank? then # meaning the student already exists in the Students table
+         if student.blank? then 
            @student = Student.create!(student_hash)
            # populate the join table
            @student.courses << Course.find(course_id) 
          else # otherwise create the student record
            student.first.update_attributes(student_hash)
+           student.first.courses << Course.find(course_id)
          end
-       end
+       end # end CSV
      end # end first if block
    end # end import method
    
