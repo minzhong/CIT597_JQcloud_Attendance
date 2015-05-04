@@ -7,6 +7,7 @@ class StudentsController < ApplicationController
     # puts "session now is: #{session[:current_course_id]}"
     # @course = Course.find_by_id(session[:current_course_id])
  #    @students = @course.students
+#    @students = Student.where("course_id = ?", params[:student][:course_id])
     @students = Student.all
   end
 
@@ -29,9 +30,17 @@ class StudentsController < ApplicationController
   # GET /graphing/1
   # GET /graphing/1.json
   def graphing
-        #@graphing = Student.find(params[:id])
-	#@student_email = Student.find(params[:id])
-	@graphing = { "total" => 26, "average" => 23, "this_student" => 24} 
+	@graphing = Hash.new()
+	@att_hash = Hash.new()
+	@student_email = Student.find(params[:id])[:email]
+	@student_note = Student.find(params[:id])[:note]
+	@att_hash = Attendance.group(:att_date).count 
+	#@graphing["total"] = @att_hash.size 
+	#@graphing["average"] = Attendance.count / (@att_hash.size  * Student.count)
+	@graphing["total"] = 5 
+	@graphing["average"] = 3 
+        @graphing["this_student"] = Student.find(params[:id]).attendances.count
+
   end
 
   # GET /students/new
