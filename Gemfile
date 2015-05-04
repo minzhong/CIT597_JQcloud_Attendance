@@ -35,14 +35,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'annotate'
 
-<<<<<<< HEAD
 
 gem 'chartkick'
 
 gem "paperclip", "~> 4.2"
 
-=======
->>>>>>> 332555489ea8a523f22b2baddecce899b6e39d8b
 gem 'twitter-bootstrap-rails'
 gem 'less-rails'
 
