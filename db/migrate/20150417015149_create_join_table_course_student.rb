@@ -1,15 +1,12 @@
-class CreateAttendances < ActiveRecord::Migration
+class CreateCoursesStudentsJoinTable < ActiveRecord::Migration
   def change
-    create_table :attendances do |t|
-      t.date :att_date
-      t.time :att_time
-      t.text :note
-      t.references :course, index: true
-      t.references :student, index: true
-
-      t.timestamps null: false
+    create_table :courses_students, id: false do |t|
+        t.integer :course_id
+        t.integer :student_id
     end
-    add_foreign_key :attendances, :courses
-    add_foreign_key :attendances, :students
+ 
+    add_index :courses_students, :course_id
+    add_index :courses_students, :student_id
+    
   end
 end
