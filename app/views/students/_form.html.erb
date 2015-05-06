@@ -50,6 +50,13 @@
     </div>
     <%= error_span(@student[:note]) %>
   </div>
+  <div class="control-group">
+    <%= f.label :course, :class => 'control-label' %>
+    <div class="controls">
+      <%= collection_select :course, :id, Course.where("user_id = ?", current_user.id), :id, :course_code, prompt: true %>
+    </div>
+    <%= error_span(@student[:note]) %>
+  </div>
 
 
   <%= f.submit nil, :class => 'btn btn-primary' %>
