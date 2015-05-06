@@ -14,7 +14,7 @@
 
 class Student < ActiveRecord::Base
 
-   has_many :attendances, foreign_key: "student_id"
+   has_many :attendances, foreign_key: "student_id", dependent: :destroy
    has_and_belongs_to_many :courses, join_table: "courses_students"
    
    validates :first_name, :presence => true
@@ -37,11 +37,13 @@ class Student < ActiveRecord::Base
            @student = Student.create!(student_hash)
            # populate the join table
            @student.courses << Course.find(course_id) 
-         else # otherwise create the student record
+         else 
            student.first.update_attributes(student_hash)
-           student.first.courses << Course.find(course_id)
+           unless student.first.courses.include? Course.find(course_id)
+             student.first.courses << Course.find(course_id)
+           end
          end
-       end # end CSV
+       end
      end # end first if block
    end # end import method
    
