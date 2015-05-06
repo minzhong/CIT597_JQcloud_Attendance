@@ -4,44 +4,23 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    # puts "session now is: #{session[:current_course_id]}"
-    # @course = Course.find_by_id(session[:current_course_id])
- #    @students = @course.students
-#    @students = Student.where("course_id = ?", params[:student][:course_id])
-    @students = Student.all
+    # puts "params[:course][:id] is: #{params[:course][:id]}"
+    # @course = Course.find_by_id(params[:course][:id])
+#     @students = @course.students
   end
 
   # import the student roster for the newly created course, session can only be used in controllers not models
   def import
     Student.import(params[:file], params[:course][:id])
-    # if (:file.empty?) then
-#       redirect_to students_url, notice: "Please upload a student roster as a csv file."
-#     else
-    redirect_to students_url, notice: "Students imported successfully." # this is for the flash notice in student views index.html.erb file
-    # end
-    
+    @course = Course.find_by_id(params[:course][:id])
+    @students = @course.students
+    # redirect_to show_students_url, notice: "Students imported successfully."
   end
+  
 
   # GET /students/1
   # GET /students/1.json
   def show
-  end
-
-  # GET /graphing/1
-  # GET /graphing/1.json
-  def graphing
-	@graphing = Hash.new()
-	@att_hash = Hash.new()
-	@student_email = Student.find(params[:id])[:email]
-	@student_note = Student.find(params[:id])[:note]
-	@att_hash = Attendance.group(:att_date).count 
-	#@graphing["total"] = @att_hash.size 
-	#@graphing["average"] = Attendance.count / (@att_hash.size  * Student.count)
-	@graphing["total"] = 5 
-	@graphing["average"] = 3 
- 	#need to consider which course
-        @graphing["this_student"] = Student.find(params[:id]).attendances.count
-
   end
 
   # GET /students/new
@@ -63,7 +42,9 @@ class StudentsController < ApplicationController
         format.html { redirect_to @student, notice: 'Student was successfully created.' }
         format.json { render :show, status: :created, location: @student }
         # Add the course just created to this student's courses, better use the drop down list 
-        @student.courses << Course.find(params[:course][:id])
+        if params[:course] != nil then
+          @student.courses << Course.find(params[:course][:id])
+        end
       else
         format.html { render :new }
         format.json { render json: @student.errors, status: :unprocessable_entity }
@@ -90,7 +71,7 @@ class StudentsController < ApplicationController
   def destroy
     @student.destroy
     respond_to do |format|
-      format.html { redirect_to students_url, notice: 'Student was successfully destroyed.' }
+      format.html { redirect_to import_students_url, notice: 'Student was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -103,6 +84,6 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :pennid, :email, :note)
+      params.require(:student).permit(:first_name, :last_name, :pennid, :email, :note, :id)
     end
 end
