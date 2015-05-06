@@ -5,9 +5,6 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-#<<<<<<< HEAD
-    @courses = Course.where(:user_id => current_user.id)
-#=======
     @current_user_id = current_user.id
     # find will only raise exception when record not found, find_by_id will return nil if record not found.
     if Course.find_by_user_id(@current_user_id).nil? then 
@@ -15,7 +12,6 @@ class CoursesController < ApplicationController
     else
       @courses = Course.where("user_id = #{@current_user_id}")
     end
-#>>>>>>> 332555489ea8a523f22b2baddecce899b6e39d8b
   end
 
   # GET /courses/1
@@ -26,7 +22,6 @@ class CoursesController < ApplicationController
   # GET /courses/new, create an empty object
   def new
     @course = Course.new
-    @drawing = { "total" => 26,  "average" =>23,  "one_student" => 25}
   end
 
   # GET /courses/1/edit
