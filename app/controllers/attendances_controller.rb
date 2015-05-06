@@ -5,9 +5,6 @@ class AttendancesController < ApplicationController
   # GET /attendances
   # GET /attendances.json
   def index
-    # Need to display attendance only for this course
-    # @attendances = Attendance.where("course_id = ?", params[:attendance][:course_id])
-    # @attendances = Attendance.all
   end
 
   # GET /attendances/1
