@@ -13,8 +13,9 @@
 #
 
 class Course < ActiveRecord::Base
- belongs_to :user
-   has_many :attendances, foreign_key: "course_id"
+   belongs_to :user
+   
+   has_many :attendances, foreign_key: "course_id", dependent: :destroy
    has_and_belongs_to_many :students, join_table: "courses_students"
    # Validations
    validates :course_code, :presence => true
@@ -26,4 +27,3 @@ class Course < ActiveRecord::Base
    validates :year, :presence => true
    validates :year, format: { with: /(1|2)\d{3}/, message: "year should have 4 digits and begin with 1 or 2" }
 end
-
