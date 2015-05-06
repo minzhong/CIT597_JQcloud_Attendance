@@ -8,49 +8,16 @@
 	    <%= file_field_tag :file %>
 	    <%= submit_tag "Upload" %>
 	  <% end %>
+	  
 </div>
 <div>
-	<h3>Add Individual Student: <%= link_to t('.new', :default => t("helpers.links.new")),
-	                                new_student_path,
+	<h3>Add Individual Student (Optional): <%= link_to t('.new', :default => t("helpers.links.new")),
+			                                new_student_path,
+			                                :class => 'btn btn-primary' %></h3>
+</div>
+<div>
+	<!-- <h3><%= link_to "Upload attendances", attendances_path, {:style=>"color:blue;"} %></h3> -->
+	<h3>Upload attendance sheet: <%= link_to t('.import', :default => t("helpers.links.import")),
+	                                attendances_path,
 	                                :class => 'btn btn-primary' %></h3>
 </div>
-<div>
-	<h3><%= link_to "Upload attendances", attendances_path %></h3>
-</div>
-<br>
-<table>
-  <thead>
-	<br>
-	<h3>Students in this class: </h3>
-    <tr>
-      <th>Id&nbsp;&nbsp;</th>
-      <th>First Name&nbsp;&nbsp;</th>
-      <th>Last Name&nbsp;&nbsp;</th>
-      <th>Penn Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-	  <th>Email&nbsp;&nbsp;&nbsp;</th>
-	  <th>Note&nbsp;&nbsp;&nbsp;</th>
-	  <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @students.each do |student| %>
-      <tr>
-        <td><%= student.id %></td>
-        <td><%= student.first_name %></td>
-        <td><%= student.last_name %></td>
-        <td><%= student.pennid %></td>
-		<td><%= student.email %></td>
-		<td><%= student.note %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_student_path(student), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      student_path(student),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
