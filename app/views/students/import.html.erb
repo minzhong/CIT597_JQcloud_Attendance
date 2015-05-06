@@ -1,0 +1,29 @@
+<table>
+  <thead>
+	<br>
+	<h3>Students in <%= @course.course_code %>: </h3>
+    <tr>
+      <th>Id&nbsp;&nbsp;</th>
+      <th>First Name&nbsp;&nbsp;</th>
+      <th>Last Name&nbsp;&nbsp;</th>
+      <th>Penn Id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+	  <th>Email&nbsp;&nbsp;&nbsp;</th>
+	  <th>Note&nbsp;&nbsp;&nbsp;</th>
+	  <!-- <th><%=t '.actions', :default => t("helpers.actions") %></th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.id %></td>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.pennid %></td>
+		<td><%= student.email %></td>
+		<td><%= student.note %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to t('.back', :default => t("helpers.links.Upload_Attendances")),
+              students_path, :class => 'btn btn-default' %> 
