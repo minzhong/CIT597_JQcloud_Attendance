@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Att Date %></th>
+      <th>Att Date</th>
       <th>Att Time</th>
       <th>Note</th>
       <th>Course Id</th>
@@ -35,3 +35,5 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              attendances_path, :class => 'btn btn-default'  %>
