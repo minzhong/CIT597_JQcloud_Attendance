@@ -41,7 +41,7 @@ class StudentsController < ApplicationController
 
         @course = Course.find_by_id(params[:course_id])
         @students_count = @course.students.count
-        @hash_ave =  Attendance.where(:course_id=>2).group(:student_id).count
+        @hash_ave =  Attendance.where(:course_id=>params[:course_id]).group(:student_id).count
         @class_ave = @hash_ave.inject(0){|sum, tuple| sum += tuple[1]}
         @graphing["average_attendance"] = (@hash_ave.inject(0){|sum, tuple| sum += tuple[1]})/@students_count
         @graphing["this_student_attendance"] = Student.find(params[:id]).attendances.where("course_id= ?", params[:course_id]).count
