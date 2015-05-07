@@ -30,19 +30,21 @@ class StudentsController < ApplicationController
         @student_note = Student.find(params[:id])[:note]
         @graphing = Hash.new()
 
-        @current_course = params[:course_id] 
+        @current_course = Course.find_by_id(params[:course_id])[:course_code] + "  "
+        @current_course += Course.find_by_id(params[:course_id])[:course_name] 
+
         @total =Attendance.where("course_id=?", params[:course_id]).group(:att_date).count.size 
         @course = Course.find_by_id(params[:course_id])
         @students_count = @course.students.count
 
-        @graphing["total"] =Attendance.where("course_id=?", params[:course_id]).group(:att_date).count.size 
-        @graphing["this_student"] = Student.find(params[:id]).attendances.where("course_id= ?", params[:course_id]).count
+        @graphing["total_attendance"] =Attendance.where("course_id=?", params[:course_id]).group(:att_date).count.size 
 
         @course = Course.find_by_id(params[:course_id])
         @students_count = @course.students.count
         @hash_ave =  Attendance.where(:course_id=>2).group(:student_id).count
         @class_ave = @hash_ave.inject(0){|sum, tuple| sum += tuple[1]}
-        @graphing["average"] = (@hash_ave.inject(0){|sum, tuple| sum += tuple[1]})/@students_count
+        @graphing["average_attendance"] = (@hash_ave.inject(0){|sum, tuple| sum += tuple[1]})/@students_count
+        @graphing["this_student_attendance"] = Student.find(params[:id]).attendances.where("course_id= ?", params[:course_id]).count
   end
 
   # GET /students/new
