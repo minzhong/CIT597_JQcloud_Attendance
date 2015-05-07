@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   # upload student roster
   resources :students do 
     collection {post :import}
-    member do
-	get 'graphing'
-    end
+#    member do
+#	get 'graphing'
+#    end
   end
   
   resources :users 

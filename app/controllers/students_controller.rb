@@ -13,7 +13,6 @@ class StudentsController < ApplicationController
   def import
     Student.import(params[:file], params[:course][:id])
     @course = Course.find_by_id(params[:course][:id])
-    @current_course_id = 7 
     @students = @course.students
     # redirect_to show_students_url, notice: "Students imported successfully."
   end
@@ -26,32 +25,44 @@ class StudentsController < ApplicationController
 
  # GET /graphing/1
  # GET /graphing/1.json
-  def graphing
-        @graphing = Hash.new()
-        @att_hash = Hash.new()
-        @student_email = Student.find(params[:id])[:email]
-        @student_note = Student.find(params[:id])[:note]
-        @att_hash = Attendance.group(:att_date).count
-        @current_course = @current_course_id
-        #@graphing["total"] = @att_hash.size
-        #@graphing["average"] = Attendance.count / (@att_hash.size  * Student.count)
-        @graphing["total"] = 5
-        @graphing["average"] = 3
-        @graphing["this_student"] = 2
+#  def graphing
+#        @graphing = Hash.new()
+#        @att_hash = Hash.new()
+#        @student_email = Student.find(params[:id])[:email]
+#        @student_note = Student.find(params[:id])[:note]
+#        @att_hash = Attendance.group(:att_date).count
+#        @current_course = @current_course_id
+#        #@graphing["total"] = @att_hash.size
+#        #@graphing["average"] = Attendance.count / (@att_hash.size  * Student.count)
+#        @graphing["total"] = 5
+#        @graphing["average"] = 3
+#        @graphing["this_student"] = 2
 
         #need to consider which course
         #@graphing["this_student"] = Student.find(params[:id]).attendances.where("course_id= ?", @current_course_id).count
 
-  end
+#  end
 
  # GET /graphing/1
  # GET /graphing/1.json
   def graphing2
+        @student_email = Student.find(params[:id])[:email]
+        @student_note = Student.find(params[:id])[:note]
         @graphing = Hash.new()
-        @graphing["total"] = 5
-        @graphing["average"] = 3
+
         @current_course = params[:course_id] 
+        @total =Attendance.where("course_id=?", params[:course_id]).group(:att_date).count.size 
+        @course = Course.find_by_id(params[:course_id])
+        @students_count = @course.students.count
+
+        @graphing["total"] =Attendance.where("course_id=?", params[:course_id]).group(:att_date).count.size 
         @graphing["this_student"] = Student.find(params[:id]).attendances.where("course_id= ?", params[:course_id]).count
+
+        @course = Course.find_by_id(params[:course_id])
+        @students_count = @course.students.count
+        @hash_ave =  Attendance.where(:course_id=>2).group(:student_id).count
+        @class_ave = @hash_ave.inject(0){|sum, tuple| sum += tuple[1]}
+        @graphing["average"] = (@hash_ave.inject(0){|sum, tuple| sum += tuple[1]})/@students_count
   end
 
   # GET /students/new
