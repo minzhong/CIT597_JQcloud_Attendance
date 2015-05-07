@@ -25,26 +25,6 @@ class StudentsController < ApplicationController
 
  # GET /graphing/1
  # GET /graphing/1.json
-#  def graphing
-#        @graphing = Hash.new()
-#        @att_hash = Hash.new()
-#        @student_email = Student.find(params[:id])[:email]
-#        @student_note = Student.find(params[:id])[:note]
-#        @att_hash = Attendance.group(:att_date).count
-#        @current_course = @current_course_id
-#        #@graphing["total"] = @att_hash.size
-#        #@graphing["average"] = Attendance.count / (@att_hash.size  * Student.count)
-#        @graphing["total"] = 5
-#        @graphing["average"] = 3
-#        @graphing["this_student"] = 2
-
-        #need to consider which course
-        #@graphing["this_student"] = Student.find(params[:id]).attendances.where("course_id= ?", @current_course_id).count
-
-#  end
-
- # GET /graphing/1
- # GET /graphing/1.json
   def graphing2
         @student_email = Student.find(params[:id])[:email]
         @student_note = Student.find(params[:id])[:note]
