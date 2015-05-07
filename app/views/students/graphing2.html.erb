@@ -1,12 +1,15 @@
 <%= column_chart (@graphing) %> 
 <br><br>
-<h1>This student has note: <%= @student_note %></h1>
-<h1>This student's current course is: <%= @current_course %></h1>
+
+<h1>Course Title: <br><%= @current_course %></h1>
+<br><br>
 <br><br>
 
-<h1><%= @student_email %></h1>
+<h1>This student has note: <%= @student_note %></h1>
 
-<a href="mailto: <% @student_email %>"> Email this student <%= @student_email %> </a>
+<br><br>
+
+<a href="mailto: <% @student_email %>"> Email this student: <%= @student_email %> </a>
 <br><br>
 <br><br>
 <br><br>
