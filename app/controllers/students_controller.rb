@@ -13,8 +13,7 @@ class StudentsController < ApplicationController
   def import
     Student.import(params[:file], params[:course][:id])
     @course = Course.find_by_id(params[:course][:id])
-    #@current_course_id = params[:course][:id]
-    @current_course_id = 5 
+    @current_course_id = 7 
     @students = @course.students
     # redirect_to show_students_url, notice: "Students imported successfully."
   end
@@ -43,6 +42,16 @@ class StudentsController < ApplicationController
         #need to consider which course
         #@graphing["this_student"] = Student.find(params[:id]).attendances.where("course_id= ?", @current_course_id).count
 
+  end
+
+ # GET /graphing/1
+ # GET /graphing/1.json
+  def graphing2
+        @graphing = Hash.new()
+        @graphing["total"] = 5
+        @graphing["average"] = 3
+        @current_course = params[:course_id] 
+        @graphing["this_student"] = Student.find(params[:id]).attendances.where("course_id= ?", params[:course_id]).count
   end
 
   # GET /students/new
