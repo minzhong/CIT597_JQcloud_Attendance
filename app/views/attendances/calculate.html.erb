@@ -11,7 +11,7 @@
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td><%= link_to student.id, student_path(student) %></td>
+        <td><%= link_to student.id, graphing_student_path(student) %></td>
         <td><%= student.last_name %></td>
 		<td><%= student.first_name %></td>
 		<td><%= Attendance.calculate_attendances(student.id, @course_id) %></td>
