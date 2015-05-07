@@ -15,7 +15,13 @@ Rails.application.routes.draw do
   
   resources :users 
   
-  resources :courses
+  resources :courses do
+    resources :students do
+    member do
+	get 'graphing2'
+    end
+    end
+  end
 
   get 'welcome/index'
 
