@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     collection {post :import}
     collection {post :calculate}
     member do
-     get 'display'
+      get 'display'
     end
   end
   # upload student roster
@@ -17,14 +17,13 @@ Rails.application.routes.draw do
   
   resources :courses do
     resources :students do
-    member do
-	get 'graphing2'
+      member do
+        get 'graphing2'
+      end
     end
-    end
-
-    collection do
+      collection do
 	get 'display'
-    end
+      end
   end
 
   get 'welcome/index'
