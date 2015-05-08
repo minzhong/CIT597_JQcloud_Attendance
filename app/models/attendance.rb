@@ -17,15 +17,11 @@ class Attendance < ActiveRecord::Base
   belongs_to :student
                                     
   validates :att_date, :presence => true
-  #validates :att_date, format: {with: /\d{2}\/\d{2}\/\d{4}/,message:"Date should be mm/dd/yyyy"}
+  validates :att_date, format: {with: /(\d{1}|\d{2})\/(\d{1}|\d{2})\/(\d{4}|\d{2})/, message:"Att Date should be in mm/dd/yyyy or mm/dd/yy format"}
 
   validates :att_time, :presence => true
-  # validates :att_time, format: {with: /[0-2][0-9]:[0-5][0-9]/}
+  validates :att_time, format: {with: /[0-2][0-9]:[0-5][0-9]/, message:"time is based on 24 hour and format is 00:00"}
 
-  validates :course_id, :presence => true
-
-  validates :student_id, :presence => true
-  # validates :student_id, format: { with: /\d{8}/, message: "penn ID should be 8 digits" }
   
   require 'csv'
   
