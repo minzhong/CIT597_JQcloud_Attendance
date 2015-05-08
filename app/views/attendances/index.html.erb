@@ -7,7 +7,7 @@
 	    <p><font color="red">Select a course: </font></p>
 		  <%= form_tag import_attendances_path, multipart: true do %>
 		  <%= collection_select :attendance, :course_id, Course.where("user_id = ?", current_user.id),
-		  		 :id, :course_code, prompt: true %>
+		  		 :id, :code_term_year, prompt: true %>
 		    <%= file_field_tag :file %>
 		    <%= submit_tag "Upload" %>
 		  <% end %>
