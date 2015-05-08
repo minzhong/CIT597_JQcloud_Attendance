@@ -26,4 +26,9 @@ class Course < ActiveRecord::Base
 
    validates :year, :presence => true
    validates :year, format: { with: /(1|2)\d{3}/, message: "year should have 4 digits and begin with 1 or 2" }
+   
+   def code_term_year
+     "#{course_code} #{term} #{year}"
+   end
+   
 end
