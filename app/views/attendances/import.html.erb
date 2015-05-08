@@ -6,7 +6,7 @@
       <th>Att Time</th>
       <th>Note</th>
       <th>Last Name</th>
-	  <th>First Name</th>
+      <th>First Name</th>
     </tr>
   </thead>
   <tbody>
@@ -16,7 +16,7 @@
         <td><%= attendance.att_time %></td>
         <td><%= attendance.note %></td>
         <td><%= Student.find_by_id(attendance.student_id).last_name %></td>
-		<td><%= Student.find_by_id(attendance.student_id).first_name %></td>
+        <td><%= Student.find_by_id(attendance.student_id).first_name %></td>
       </tr>
     <% end %>
   </tbody>
