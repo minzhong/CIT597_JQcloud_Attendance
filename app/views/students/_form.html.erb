@@ -53,11 +53,10 @@
   <div class="control-group">
     <%= f.label :course, :class => 'control-label' %>
     <div class="controls">
-      <%= collection_select :course, :id, Course.where("user_id = ?", current_user.id), :id, :course_code, prompt: true %>
+      <%= collection_select :course, :id, Course.where("user_id = ?", current_user.id), :id, :code_term_year, prompt: true %>
     </div>
     <%= error_span(@student[:note]) %>
   </div>
-
 
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
