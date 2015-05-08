@@ -2,38 +2,25 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Id</th>
       <th>Att Date</th>
       <th>Att Time</th>
       <th>Note</th>
-      <th>Course Id</th>
       <th>Last Name</th>
 	  <th>First Name</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @attendances.each do |attendance| %>
       <tr>
-        <td><%= link_to attendance.id, attendance_path(attendance) %></td>
         <td><%= attendance.att_date %></td>
         <td><%= attendance.att_time %></td>
         <td><%= attendance.note %></td>
-        <td><%= attendance.course_id %></td>
         <td><%= Student.find_by_id(attendance.student_id).last_name %></td>
 		<td><%= Student.find_by_id(attendance.student_id).first_name %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_attendance_path(attendance), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      attendance_path(attendance),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %> 
-        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<br>
 <%= link_to t('.back', :default => t("helpers.links.back")),
               attendances_path, :class => 'btn btn-default'  %>
