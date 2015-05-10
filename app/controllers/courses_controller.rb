@@ -24,6 +24,53 @@ class CoursesController < ApplicationController
     @course = Course.new
   end
 
+
+ def cloud
+        @word1 = "internetWeb"
+        @size1 = 10
+        @word2 = "RubyOnRails"
+        @size2 = 5
+        @word3 = ""
+        @size3 = 0
+        @word4 = ""
+        @size4 = 0
+        @word5 = ""
+        @size5 = 0
+        @word6 = ""
+        @size6 = 0
+        @word7 = ""
+        @size7 = 0
+        @word8 = ""
+        @size8 = 0
+        @word9 = ""
+        @size9 = 0
+        @word10 = ""
+        @size10 = 0
+        @word11 = ""
+        @size11 = 0
+        @word12 = ""
+        @size12 = 0
+        @word13 = ""
+        @size13 = 0
+        @word14 = ""
+        @size14 = 0
+        @word15 = ""
+        @size15 = 0
+        @word16 = ""
+        @size16 = 0
+        @word17 = ""
+        @size17 = 0
+        @word18 = ""
+        @size18 = 0
+        @word19 = ""
+        @size19 = 0
+        @word20 = ""
+        @size20 = 0
+        @word21 = ""
+        @size21 = 0
+  end
+
+
   # GET /courses/1/edit
   def edit
   end
