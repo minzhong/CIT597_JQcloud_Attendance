@@ -17,3 +17,4 @@
 //= require_tree .
 //= require jsapi
 //= require chartkick
+//= require jqcloud

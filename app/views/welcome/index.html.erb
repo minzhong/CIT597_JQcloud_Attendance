@@ -1,3 +1,63 @@
-<h1>Hello, Attendance App user</h1>
-<p>this is to automate attendance process.</p>
-<p>processing Excel spreadsheet from Swipe machine.</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, Cloud</title>
+    <link rel="stylesheet" type="text/css" href="../jqcloud/jqcloud.css" />
+    <script type="text/javascript" src="http://ajax.agoogleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+    <script type="text/javascript" src="../jqcloud/jqcloud-1.0.4.js"></script>
+    <script type="text/javascript">
+      var word_list = [
+        {text: "InternetWeb", weight: 10, link: "https://github.com/DukeLeNoir/jQCloud"},
+        {text: "TCPIPUDP", weight: 4, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
+        {text: "URNLinuxUnix", weight: 4},
+        {text: "HTMLCSS", weight: 4},
+        {text: "Ruby", weight: 4},
+        {text: "RubyMapReduce", weight: 4},
+        {text: "MixinsModules", weight: 4},
+        {text: "MVC", weight: 4},
+        {text: "SoftwareEngineering", weight: 4},
+        {text: "IntroToDB", weight: 4},
+        {text: "ARValdiation", weight: 4},
+        {text: "Pellentesque", weight: 3},
+        {text: "habitant", weight: 3},
+        {text: "morbi", weight: 3},
+        {text: "tristisque", weight: 3},
+        {text: "senectus", weight: 3},
+        {text: "et netus", weight: 3},
+        {text: "et malesuada", weight: 3},
+        {text: "fames", weight: 2},
+        {text: "ac turpis", weight: 2},
+        {text: "egestas", weight: 2},
+        {text: "Aenean", weight: 2},
+        {text: "vestibulum", weight: 2},
+        {text: "elit", weight: 2},
+        {text: "sit amet", weight: 2},
+        {text: "metus", weight: 2},
+        {text: "adipiscing", weight: 2},
+        {text: "ut ultrices", weight: 2},
+        {text: "justo", weight: 1},
+        {text: "dictum", weight: 1},
+        {text: "Ut et leo", weight: 1},
+        {text: "metus", weight: 1},
+        {text: "at molestie", weight: 1},
+        {text: "purus", weight: 1},
+        {text: "Curabitur", weight: 1},
+        {text: "diam", weight: 1},
+        {text: "dui", weight: 1},
+        {text: "ullamcorper", weight: 1},
+        {text: "id vuluptate ut", weight: 1},
+        {text: "mattis", weight: 1},
+        {text: "et nulla", weight: 1},
+        {text: "Sed", weight: 1}
+      ];
+      $(function() {
+ 	$("#my_favorite_latin_words").jQCloud(word_list);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>jQCloud Example</h1>
+    <div id="my_favorite_latin_words" style="width: 550px; height: 350px; border: 1px solid #ccc;"></div>
+  </body>
+</html>
+
