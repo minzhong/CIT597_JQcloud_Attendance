@@ -8,7 +8,6 @@ Rails.application.routes.draw do
       get 'display'
     end
   end
-
   # upload student roster
   resources :students do 
     collection {post :import}
@@ -22,13 +21,16 @@ Rails.application.routes.draw do
         get 'graphing2'
       end
     end
-      collection do
-	get 'display'
-      end
-
-      member do
+    
+    member do
 	get 'cloud'
-      end
+    end
+
+    collection do
+	get 'display'
+    end
+
+
   end
 
   get 'welcome/index'

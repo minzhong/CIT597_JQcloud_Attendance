@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hello, Cloud</title>
+    <title>jQCloud Example</title>
     <link rel="stylesheet" type="text/css" href="../jqcloud/jqcloud.css" />
     <script type="text/javascript" src="http://ajax.agoogleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
     <script type="text/javascript" src="../jqcloud/jqcloud-1.0.4.js"></script>
     <script type="text/javascript">
       var word_list = [
-        {text: "InternetWeb", weight: 13, link: "https://github.com/DukeLeNoir/jQCloud"},
-        {text: "TCPIPUDP", weight: 10.5, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
+        {text: "InternetWeb", weight: 10, link: "https://github.com/DukeLeNoir/jQCloud"},
+        {text: "TCPIPUDP", weight: 4, html: {title: "My Title", "class": "custom-class"}, link: {href: "http://jquery.com/", target: "_blank"}},
         {text: "URNLinuxUnix", weight: 4},
         {text: "HTMLCSS", weight: 4},
         {text: "Ruby", weight: 4},

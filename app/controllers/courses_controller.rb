@@ -26,48 +26,43 @@ class CoursesController < ApplicationController
 
 
  def cloud
-        @word1 = "internetWeb"
-        @size1 = 10
-        @word2 = "RubyOnRails"
-        @size2 = 5
-        @word3 = ""
-        @size3 = 0
-        @word4 = ""
-        @size4 = 0
-        @word5 = ""
-        @size5 = 0
-        @word6 = ""
-        @size6 = 0
-        @word7 = ""
-        @size7 = 0
-        @word8 = ""
-        @size8 = 0
-        @word9 = ""
-        @size9 = 0
-        @word10 = ""
-        @size10 = 0
-        @word11 = ""
-        @size11 = 0
-        @word12 = ""
-        @size12 = 0
-        @word13 = ""
-        @size13 = 0
-        @word14 = ""
-        @size14 = 0
-        @word15 = ""
-        @size15 = 0
-        @word16 = ""
-        @size16 = 0
-        @word17 = ""
-        @size17 = 0
-        @word18 = ""
-        @size18 = 0
-        @word19 = ""
-        @size19 = 0
-        @word20 = ""
-        @size20 = 0
-        @word21 = ""
-        @size21 = 0
+        @word_cloud = []
+        @word_cloud[1]= {}
+        @word_cloud[2]= {}
+
+        attendance_count =  Course.find(params[:id]).attendances.group(:att_date).count
+        syllabus_weekly = {"1/16/15"=>"InternetWeb", "1/21/15"=>"Validation", "1/23/15"=>"Migration"}
+
+	i = 0
+        attendance_count.each do |k, v| 
+         	@word_cloud[i]= {}
+                @word_cloud[i]["weight"] = v
+		i += 1
+	end
+
+	i = 0
+        syllabus_weekly.each do |k, v| 
+                @word_cloud[i]["text"] = v
+		i += 1
+	end
+
+        # assign hash_value to @word_cloud[0]["weight"] = num
+        #@word_cloud[0]= {}
+        #@word_cloud[0]["text"] = "InteretWeb"
+        #@word_cloud[0]["weight"] = 4 
+
+        #@word_cloud[1]= {}
+        #@word_cloud[1]["text"] = "Validation"
+        #@word_cloud[1]["weight"] = 6 
+
+        #@word_cloud[2]= {}
+        #@word_cloud[2]["text"] = "Migration"
+        #@word_cloud[2]["weight"] = 2 
+
+        #@word_cloud[3]= {}
+        #@word_cloud[3]["text"] = "ActiveRecord"
+        #@word_cloud[3]["weight"] = 6 
+
   end
 
 

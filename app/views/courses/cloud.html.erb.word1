@@ -1,0 +1,29 @@
+<h1>hello cloud</h1>
+<title>Syllabus Cloud</title>
+    <link rel="stylesheet" type="text/css" href="../jqcloud/jqcloud.css" />
+    <script type="text/javascript" src="http://ajax.agoogleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+    <script type="text/javascript" src="../jqcloud/jqcloud-1.0.4.js"></script>
+    <script type="text/javascript">
+      var word_list = [{text: "<%= @word1 %>", weight: <%= @size1 %>},
+                       {text: "<%= @word2 %>", weight: <%= @size2 %>},
+                       {text: "<%= @word3 %>", weight: <%= @size3 %>},
+                       {text: "<%= @word4 %>", weight: <%= @size4 %>},
+                       {text: "<%= @word5 %>", weight: <%= @size5 %>},
+                       {text: "<%= @word6 %>", weight: <%= @size6 %>},
+                       {text: "<%= @word7 %>", weight: <%= @size7 %>},
+                       {text: "<%= @word8 %>", weight: <%= @size8 %>},
+                       {text: "<%= @word9 %>", weight: <%= @size9 %>},
+                       {text: "<%= @word10 %>", weight: <%= @size10 %>},
+                       {text: "<%= @word11 %>", weight: <%= @size11 %>},
+                       {text: "<%= @word12 %>", weight: <%= @size12 %>},
+                       {text: "<%= @word13 %>", weight: <%= @size13 %>}];
+
+ $(function() {
+        $("#my_favorite_latin_words").jQCloud(word_list);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Syllabus Cloud</h1>
+    <div id="my_favorite_latin_words" style="width: 550px; height: 350px; border: 1px solid #ccc;"></div>
+  </body>
