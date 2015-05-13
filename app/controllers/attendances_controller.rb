@@ -26,6 +26,25 @@ class AttendancesController < ApplicationController
     @course_name = course.course_code
     @students = course.students
   end
+  
+  
+  def detail
+    @course_id = params[:attendance][:course_id]
+    course = Course.find_by_id(@course_id)
+    @course_name = course.course_code
+    @students = course.students
+    datetopics = Datetopic.where("course_id = ?", @course_id)
+    @dates = []
+    if datetopics != nil
+      datetopics.each do |datetopic|
+        @dates << datetopic.date
+      end
+    end
+  end
+  
+  
+  
+  
 
   # GET /attendances/new
   def new
