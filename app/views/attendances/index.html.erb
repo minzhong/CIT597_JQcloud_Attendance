@@ -12,4 +12,24 @@
 		    <%= submit_tag "Upload" %>
 		  <% end %>
 		  
+	<h3>View overall attendances: </h3>
+		<p><font color="red">Select a course: </font> </p>
+		  <%= form_tag calculate_attendances_path, multipart: true do %>
+		  <%= collection_select :attendance, :course_id, Course.where("user_id = ?", current_user.id),
+		  		 :id, :code_term_year, prompt: true %>
+		    <%= submit_tag "View" %>
+		  <% end %>
+		  
+	<h3>View detailed attendances: </h3>
+		<p><font color="red">Select a course: </font> </p>
+		  <%= form_tag detail_attendances_path, multipart: true do %>
+		  <%= collection_select :attendance, :course_id, Course.where("user_id = ?", current_user.id),
+		  		 :id, :code_term_year, prompt: true %>
+		    <%= submit_tag "View" %>
+		  <% end %>
 </div>
+
+<!-- <%= link_to t('.new', :default => t("helpers.links.new")),
+            new_attendance_path,
+            :class => 'btn btn-primary' %> -->
+
