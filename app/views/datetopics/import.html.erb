@@ -1,0 +1,26 @@
+<table>
+  <thead>
+	<br>
+	<h3>Syllabus in <%= @course_name %>: </h3>
+    <tr>
+      <th>Id&nbsp;&nbsp;</th>
+      <th>Course Id&nbsp;&nbsp;</th>
+      <th>Date&nbsp;&nbsp;</th>
+      <th>Topic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+	  <!-- <th><%=t '.actions', :default => t("helpers.actions") %></th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @datetopics.each do |datetopic| %>
+      <tr>
+        <td><%= datetopic.id %></td>
+        <td><%= datetopic.course_id %></td>
+        <td><%= datetopic.date %></td>
+        <td><%= datetopic.topic %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to t('.back', :default => t("helpers.links.Back")),
+              attendances_path, :class => 'btn btn-default' %> 

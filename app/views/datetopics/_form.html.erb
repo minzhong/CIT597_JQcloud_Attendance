@@ -1,0 +1,29 @@
+<%= form_for(@datetopic) do |f| %>
+  <% if @datetopic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@datetopic.errors.count, "error") %> prohibited this datetopic from being saved:</h2>
+
+      <ul>
+      <% @datetopic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.text_field :date %>
+  </div>
+  <div class="field">
+    <%= f.label :topic %><br>
+    <%= f.text_field :topic %>
+  </div>
+  <div class="field">
+    <%= f.label :course_id %><br>
+    <%= f.text_field :course_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

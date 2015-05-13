@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @datetopic.date %>
+</p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @datetopic.topic %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @datetopic.course %>
+</p>
+
+<%= link_to 'Edit', edit_datetopic_path(@datetopic) %> |
+<%= link_to 'Back', datetopics_path %>
