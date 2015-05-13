@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions"}
   
+  resources :datetopics do 
+    collection {post :import}
+  end
+  
+  
   resources :attendances do 
     collection {post :import}
     collection {post :calculate}
+    collection {post :detail}
     member do
       get 'display'
     end
